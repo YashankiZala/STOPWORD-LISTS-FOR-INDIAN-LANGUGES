@@ -6,11 +6,11 @@ This repository contains **stopword lists** generated from nine pre‑trained tr
 
 | Language | Folder Name |
 |----------|--------------|
-| Gujarati | `gujarati/` |
-| Hindi    | `hindi/`    |
-| English  | `english/`  |
-| Marathi  | `marathi/`  |
-| Bengali  | `bengali/`  |
+| Gujarati | `Gujarati/` |
+| Hindi    | `Hindi/`    |
+| English  | `English/`  |
+| Marathi  | `Marathi/`  |
+| Bengali  | `Bengali/`  |
 
 ## Models Used
 
@@ -32,7 +32,6 @@ Stopword lists are generated from **nine** different transformer/LLM architectur
 - **Mistral** – Mistral 7B [8]
 
 ## Repository Structure
-
 ├── gujarati/
 │ ├── muril_stopwords.txt
 │ ├── mbert_stopwords.txt
@@ -53,6 +52,7 @@ Stopword lists are generated from **nine** different transformer/LLM architectur
 │ └── (same nine files)
 └── README.md
 
+text
 
 Each `.txt` file contains one stopword per line. The stopwords are lowercased and stripped of punctuation.
 
@@ -68,5 +68,41 @@ Using these stopword lists in combination with standard retrieval models (BM25, 
 | Marathi  | XLM‑R      | +5.02%       |
 | Bengali  | MuRIL      | +2.41%       |
 
-Detailed experimental results are available in our paper.
-   
+Detailed experimental results are available in our paper [9].
+
+## How to Use
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/stopwords-indian-languages.git
+   cd stopwords-indian-languages
+Load a stopword list (Python)
+
+python
+language = "hindi"
+model = "mt5"
+with open(f"{language}/{model}_stopwords.txt", "r", encoding="utf-8") as f:
+    stopwords = set([line.strip() for line in f])
+Apply in your IR pipeline – remove tokens that appear in the stopword set before indexing or querying.
+
+License
+This repository is released under the MIT License. The stopword lists are free for academic and commercial use.
+
+References
+[1] Khanuja et al. (2021). MuRIL: Multilingual Representations for Indian Languages. EACL.
+
+[2] Conneau et al. (2020). Unsupervised Cross-lingual Representation Learning at Scale. ACL.
+
+[3] Wang et al. (2024). Text Embeddings by Weakly-Supervised Contrastive Pre-training. ACL.
+
+[4] Su et al. (2023). One Embedder, Any Task: Instruction-Finetuned Text Embeddings. ACL Findings.
+
+[5] Xue et al. (2021). mT5: A massively multilingual pre-trained text-to-text transformer. NAACL.
+
+[6] Liu et al. (2020). Multilingual Denoising Pre-training for Neural Machine Translation. TACL.
+
+[7] Scao et al. (2023). BLOOM: A 176B-Parameter Open-Access Multilingual Language Model. JMLR.
+
+[8] Jiang et al. (2023). Mistral 7B. arXiv preprint.
+
+[9] Sahu and Pal (2023). Effect of stopwords in Indian language IR. Sādhanā.
